@@ -1,12 +1,13 @@
-name : CI/CD for learn
+name: CI/CD for learn
 
 on:
   push:
-    branch:[main]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
-  contenst: write
+  content: write
 
 jobs:
   build:
@@ -16,17 +17,18 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
-      -name: setup node
+      - name: setup node
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      -name: install dependencies
+
+      - name: install dependencies
         run: npm install
         
-      -name: build
+      - name: build
         run: npm run build
 
-      -name: deploy to github
+      - name: deploy to github
         uses: jamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
